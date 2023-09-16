@@ -40,6 +40,12 @@ export function Post({id, author, content, publishedAt}) {
     setNewCommentText(event.target.value)
   }
 
+  function deleteComment(comment) {
+    const othersComments = comments.filter(others => others != comment)
+
+    setComments(othersComments)
+  }
+
   return (
     <article className={styles.post}>
       <header>
@@ -83,7 +89,7 @@ export function Post({id, author, content, publishedAt}) {
       <div className={styles.commentList} >
         {comments.map( comment => {
           return (
-          <Comment key={comment} content={comment} />
+          <Comment key={comment} content={comment} onDeleteComment={deleteComment} />
           )
         })}
       </div>
